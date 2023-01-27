@@ -1,31 +1,35 @@
 let languages = [
     en = {
+        head: "Cookies",
         content: "By using our website, you approve the use of cookies.",
         title: "Acceptance of cookies",
         accept: "Accept"
     },
     de = {
+        head: "Cookies",
         content: "Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.",
         title: "Annahme von Cookies",
         accept: "Akzeptieren"
     },
     fr = {
+        head: "Cookies",
         content: "En utilisant notre site Web, vous acceptez l'utilisation de cookies.",
         title: "Acceptation des cookies",
         accept: "Accepter"
     },
     hu = {
+        head: "Sütik",
         content: "Weboldalunk használatával jóváhagyod a sütik használatát.",
         title: "Süti elfogadása",
         accept: "Elfogadom"
     },
     it = {
+        head: "Cookies",
         content: "Utilizzando il nostro sito Web, accetti l'uso dei cookie.",
         title: "Accettazione dei cookie",
-        accept: "Accettazione dei cookie"
+        accept: "Accettare"
     }
 ];
-
 
 function hideCookie() {
     $("#cookieAccept").hide("slow", function () {
