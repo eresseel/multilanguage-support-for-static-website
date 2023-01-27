@@ -25,3 +25,40 @@ let languages = [
         accept: "Accettazione dei cookie"
     }
 ];
+
+
+function hideCookie() {
+    $("#cookieAccept").hide("slow", function () {
+        $("#cookieAccept").css('display', 'none');
+    });
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 3600 * 1000)); //hour
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function cookieAccept() {
+    setCookie("cookieAccept", 1, 2);
+    hideCookie();
+}
+
+function getCookie(cname) {
+    let ca = document.cookie.split(';');
+    let getCookie = "";
+
+    for (let i = 0; i < ca.length; i++) {
+        if (ca[i].trim() == cname) {
+            getCookie = ca[i];
+            return getCookie;
+        }
+    }
+
+    return false;
+}
+
+if (getCookie("cookieAccept=1")) {
+    $("#cookieAccept").css('display', 'none');
+}
