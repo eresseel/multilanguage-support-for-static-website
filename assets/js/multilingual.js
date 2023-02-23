@@ -33,19 +33,19 @@ let languages = {
 
 let defaultLanguage = "hu";
 let browserLanguage = navigator.language || navigator.userLanguage;
+browserLanguage = browserLanguage.substring(0, 2);
 
 if (languages[browserLanguage] != undefined) {
     setCookie("language", browserLanguage, 2);
-    browserLanguage = browserLanguage.substring(0, 2);
 } else {
-    setCookie("language", defaultLanguage, 2);
     browserLanguage = defaultLanguage;
+    setCookie("language", defaultLanguage, 2);
 }
 
 let cookieHtml = "";
 
-Object.entries(languages).forEach(([key, value]) => {
-    if (key == browserLanguage.substring(0, 2)) {
+Object.entries(languages).forEach(([key]) => {
+    if (key == browserLanguage) {
         cookieHtml += `
         <div>
             <blockquote class="blockquote">
