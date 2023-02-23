@@ -31,6 +31,17 @@ let languages = {
     }
 };
 
+let defaultLanguage = "hu";
+let browserLanguage = navigator.language || navigator.userLanguage;
+
+if (languages[browserLanguage] != undefined) {
+    setCookie("language", browserLanguage, 2);
+    browserLanguage = browserLanguage.substring(0, 2);
+} else {
+    setCookie("language", defaultLanguage, 2);
+    browserLanguage = defaultLanguage;
+}
+
 let cookieHtml = "";
 
 Object.entries(languages).forEach(([key, value]) => {
