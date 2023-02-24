@@ -32,20 +32,20 @@ let languages = {
 };
 
 let defaultLanguage = "hu";
-let browserLanguage = navigator.language || navigator.userLanguage;
-browserLanguage = browserLanguage.substring(0, 2);
+let languageByBrowser = navigator.language || navigator.userLanguage;
+languageByBrowser = languageByBrowser.substring(0, 2);
 
-if (languages[browserLanguage] != undefined) {
-    setCookie("language", browserLanguage, 2);
+if (languages[languageByBrowser] != undefined) {
+    setCookie("language", languageByBrowser, 2);
 } else {
-    browserLanguage = defaultLanguage;
+    languageByBrowser = defaultLanguage;
     setCookie("language", defaultLanguage, 2);
 }
 
 let cookieHtml = "";
 
 Object.entries(languages).forEach(([key]) => {
-    if (key == browserLanguage) {
+    if (key == languageByBrowser) {
         cookieHtml += `
         <div>
             <blockquote class="blockquote">
@@ -63,3 +63,7 @@ Object.entries(languages).forEach(([key]) => {
 });
 
 $('#cookieAccept').html(cookieHtml);
+
+function setLanguage(language) {
+    setCookie("language", language, 2);
+}
