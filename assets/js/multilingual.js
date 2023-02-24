@@ -70,3 +70,8 @@ function setLanguage(language) {
     setCookie("language", language, 2);
     window.location.reload();
 }
+
+let language = getCookie("language=", true).split('=')[1];
+$(document).ready(function () {
+    $("#content").load(`./lang/${language}/index.html`);
+});
