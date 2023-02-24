@@ -68,4 +68,5 @@ $('#cookieAccept').html(cookieHtml);
 
 function setLanguage(language) {
     setCookie("language", language, 2);
+    window.location.reload();
 }
