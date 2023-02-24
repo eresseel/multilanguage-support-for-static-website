@@ -35,17 +35,19 @@ let defaultLanguage = "hu";
 let languageByBrowser = navigator.language || navigator.userLanguage;
 languageByBrowser = languageByBrowser.substring(0, 2);
 
-if (languages[languageByBrowser] != undefined) {
+if (getCookie("isSetLanguageByBrowser=true") == false && languages[languageByBrowser] != undefined) {
     setCookie("language", languageByBrowser, 2);
-} else {
+    setCookie("isSetLanguageByBrowser", "true", 2);
+} else if (getCookie("isSetLanguageByBrowser=true") == false && languages[languageByBrowser] == undefined) {
     languageByBrowser = defaultLanguage;
     setCookie("language", defaultLanguage, 2);
+    setCookie("isSetLanguageByBrowser", "true", 2);
 }
 
 let cookieHtml = "";
 
 Object.entries(languages).forEach(([key]) => {
-    if (key == languageByBrowser) {
+    if (key == getCookie("language=", true).split('=')[1]) {
         cookieHtml += `
         <div>
             <blockquote class="blockquote">
