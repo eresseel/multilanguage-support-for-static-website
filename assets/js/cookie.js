@@ -5,7 +5,7 @@ function cookieAccept() {
 
 function hideCookie() {
     $("#cookieAccept").hide("slow", function () {
-        $("#cookieAccept").css('display', 'none');
+        $("#cookieAccept").css("display", "none");
     });
 }
 
@@ -17,7 +17,7 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function getCookie(cname, search = false) {
-    let ca = document.cookie.split(';');
+    let ca = document.cookie.split(";");
     let getCookie = "";
 
     for (let i = 0; i < ca.length; i++) {
@@ -34,5 +34,5 @@ function getCookie(cname, search = false) {
 }
 
 if (getCookie("cookieAccept=1")) {
-    $("#cookieAccept").css('display', 'none');
+    $("#cookieAccept").css("display", "none");
 }

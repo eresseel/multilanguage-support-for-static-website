@@ -47,7 +47,7 @@ if (getCookie("isSetLanguageByBrowser=true") == false && languages[languageByBro
 let cookieHtml = "";
 
 Object.entries(languages).forEach(([key]) => {
-    if (key == getCookie("language=", true).split('=')[1]) {
+    if (key == getCookie("language=", true).split("=")[1]) {
         cookieHtml += `
         <div>
             <blockquote class="blockquote">
@@ -64,7 +64,7 @@ Object.entries(languages).forEach(([key]) => {
     }
 });
 
-$('#cookieAccept').html(cookieHtml);
+$("#cookieAccept").html(cookieHtml);
 
 function setLanguage(language) {
     setCookie("language", language, 2);
