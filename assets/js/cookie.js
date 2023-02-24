@@ -16,12 +16,15 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function getCookie(cname) {
+function getCookie(cname, search = false) {
     let ca = document.cookie.split(';');
     let getCookie = "";
 
     for (let i = 0; i < ca.length; i++) {
-        if (ca[i].trim() == cname) {
+        if (search == false && ca[i].trim() == cname) {
+            getCookie = ca[i];
+            return getCookie;
+        } else if (search == true && ca[i].search(cname) != -1) {
             getCookie = ca[i];
             return getCookie;
         }
