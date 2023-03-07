@@ -31,23 +31,39 @@ let languages = {
     }
 };
 
+let ttl = 2;
 let defaultLanguage = "hu";
 let languageByBrowser = navigator.language || navigator.userLanguage;
 languageByBrowser = languageByBrowser.substring(0, 2);
 
-if (getCookie("isSetLanguageByBrowser=true") == false && languages[languageByBrowser] != undefined) {
-    setCookie("language", languageByBrowser, 2);
-    setCookie("isSetLanguageByBrowser", "true", 2);
-} else if (getCookie("isSetLanguageByBrowser=true") == false && languages[languageByBrowser] == undefined) {
+if (getCookie("cookieAccept=1") && getCookie("isSetLanguageByUser=true") == false && languages[languageByBrowser] != undefined) {
+    setCookie("language", languageByBrowser, ttl);
+} else if (getCookie("cookieAccept=1") && getCookie("isSetLanguageByUser=true") == false && languages[languageByBrowser] == undefined) {
     languageByBrowser = defaultLanguage;
-    setCookie("language", defaultLanguage, 2);
-    setCookie("isSetLanguageByBrowser", "true", 2);
 }
 
 let cookieHtml = "";
 
+let language = null;
+
+if (getCookie("cookieAccept=1") == false && languages[languageByBrowser] != undefined) {
+    language = languageByBrowser;
+} else if (getCookie("cookieAccept=1") == false && languages[languageByBrowser] == undefined) {
+    language = defaultLanguage;
+} else {
+    language = getCookie("language=", true) ? getCookie("language=", true).split('=')[1] : defaultLanguage;
+}
+
+function setLanguage(language) {
+    if (getCookie("cookieAccept=1")) {
+        setCookie("language", language, ttl);
+        setCookie("isSetLanguageByUser", "true", ttl);
+        window.location.reload();
+    }
+}
+
 Object.entries(languages).forEach(([key]) => {
-    if (key == getCookie("language=", true).split("=")[1]) {
+    if (key == language) {
         cookieHtml += `
         <div>
             <blockquote class="blockquote">
@@ -66,12 +82,6 @@ Object.entries(languages).forEach(([key]) => {
 
 $("#cookieAccept").html(cookieHtml);
 
-function setLanguage(language) {
-    setCookie("language", language, 2);
-    window.location.reload();
-}
-
-let language = getCookie("language=", true).split('=')[1];
 $(document).ready(function () {
     $("#content").load(`./lang/${language}/index.html`);
 });
