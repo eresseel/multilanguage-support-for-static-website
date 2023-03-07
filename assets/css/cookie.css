@@ -1,0 +1,11 @@
+.cookie {
+    z-index: 999;
+    width: 100%;
+    padding: 30px 30px 30px 30px;
+    background: #555;
+    color: #eee;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0px;
+    display: block;
+}
